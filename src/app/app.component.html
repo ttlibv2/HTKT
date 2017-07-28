@@ -1,54 +1,69 @@
 <form #form="ngForm" (ngSubmit)="sendContact(form.value)">
 			<fieldset ngModelGroup="pbInfo">
 				<div class="form-group row">
+					<label for="ngayHT" class="col-md-3 col-form-label">Ngay HT: </label>
+					<div class="col-md-5">
+						<input type="text" id="ngayHT" class="form-control" [ngModel]="contact.ngayHT | date:'yyyymmdd'" name="ngayHT"/>
+					</div>
+				</div>
+				<div class="form-group row">
 					<label for="phongBan" class="col-md-3 col-form-label">Phòng Ban: </label>
-					<div class="col-md-5"><input type="text" id="phongBan" class="form-control" ngModel name="entry.phongBan"/></div>
+					<div class="col-md-5">
+						<input type="text" id="phongBan" class="form-control" [ngModel]="contact.phongBan" name="phongBan"/>
+					</div>
 				</div>
 				<div class="form-group row">
 					<label for="kenhHoTro" class="col-md-3 col-form-label">Kênh hỗ trợ: </label>
-					<div class="col-md-5"><input type="text" id="kenhHoTro" class="form-control" ngModel name="entry.kenhHoTro"/></div>
+					<div class="col-md-5">
+						<select ngModel name="kenhHoTro" id="kenhHoTro"  class="form-control">
+							<option *ngFor="let kenh of kenhHoTros" [value]="kenh">{{kenh}}</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group row">
 					<label for="lineNoiBo" class="col-md-3 col-form-label">Line nội bộ: </label>
-					<div class="col-md-5"><input type="text" id="lineNoiBo" class="form-control" ngModel name="entry.lineNoiBo"/></div>
+					<div class="col-md-5"><input type="text" id="lineNoiBo" class="form-control" ngModel name="lineNoiBo"/></div>
 				</div>
 			</fieldset>
 			<fieldset ngModelGroup="contactInfo">
 				<div class="form-group row">
 					<label for="tenCongTy" class="col-md-3 col-form-label">Tên công ty: </label>
-					<div class="col-md-5"><input type="text" id="tenCongTy" class="form-control" ngModel name="entry.tenCongTy"/></div>
+					<div class="col-md-5"><input type="text" id="tenCongTy" class="form-control" ngModel name="tenCongTy"/></div>
 				</div>
 				<div class="form-group row">
 					<label for="maSoThue" class="col-md-3 col-form-label">Mã số thuế / Mã đơn vị: </label>
-					<div class="col-md-5"><input type="text" id="maSoThue" class="form-control" ngModel name="entry.maSoThue"/></div>
+					<div class="col-md-5"><input type="text" id="maSoThue" class="form-control" ngModel name="maSoThue"/></div>
 				</div>
 				<div class="form-group row">
 					<label for="tenKhachHang" class="col-md-3 col-form-label">Tên khách hàng: </label>
-					<div class="col-md-5"><input type="text" id="tenKhachHang" class="form-control" ngModel name="entry.tenKhachHang"/></div>
+					<div class="col-md-5"><input type="text" id="tenKhachHang" class="form-control" ngModel name="tenKhachHang"/></div>
 				</div>
 				<div class="form-group row">
 					<label for="email" class="col-md-3 col-form-label">E-mail: </label>
-					<div class="col-md-5"><input type="text" id="email" class="form-control" ngModel name="entry.email"/></div>
+					<div class="col-md-5"><input type="text" id="email" class="form-control" ngModel name="email"/></div>
 				</div>
 				<div class="form-group row">
 					<label for="soDienThoai" class="col-md-3 col-form-label">Số điện thoại liên hệ: </label>
-					<div class="col-md-5"><input type="text" id="soDienThoai" class="form-control" ngModel name="entry.soDienThoai"/></div>
+					<div class="col-md-5"><input type="text" id="soDienThoai" class="form-control" ngModel name="soDienThoai"/></div>
 				</div>
 				<div class="form-group row">
 					<label for="noiDungHT" class="col-md-3 col-form-label">Nội dung cần hỗ trợ: </label>
-					<div class="col-md-5"><input type="text" id="noiDungHT" class="form-control" ngModel name="entry.noiDungHT"/></div>
+					<div class="col-md-5"><input type="text" id="noiDungHT" class="form-control" ngModel name="noiDungHT"/></div>
 				</div>
 			</fieldset>
 			<fieldset ngModelGroup="result">
 				<div class="form-group row">
 					<label for="noiDungCopy" class="col-md-3 col-form-label">Hiển thị nội dung: </label>
-					<div class="col-md-5"><textarea id="noiDungCopy" class="form-control" ngModel name="noiDungCopy"></textarea></div>
+					<div class="col-md-5">
+					<textarea id="noiDungCopy" class="form-control"  name="noiDungCopy" [(ngModel)]="resultLog" style="height: 200px;">
+					</textarea>
+					</div>
 				</div>    
 			</fieldset>
 			<div class="form-group row">
 				<div class="col-md-10 offset-md-3">
 				<button class="btn btn-primary" type="submit">Gửi</button>
-				<button class="btn btn-primary" type="reset">Nhập Lại</button>
+				<button class="btn btn-primary" type="button" (click)="resetForm()">Nhập Lại</button>
 			  </div>
 			</div>
 		</form>
