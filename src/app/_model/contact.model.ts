@@ -1,6 +1,6 @@
 
 export class ContactModel {
-        public ngayHT : Date;
+        public ngayHT : string;
 		public phongBan : string;
 		public kenhHoTro : string;
 		public lineNoiBo : string;
@@ -12,19 +12,15 @@ export class ContactModel {
 		public noiDungHT : string;
 	constructor()
 	{
-		//this.lineNoiBo = lineNoiBo;
-			this.phongBan = "HTKT";
-			this.ngayHT = new Date();
-		}
+		this.phongBan = "HTKH";
+	}
 
 		reset():void{
-			//this.ngayHT = null;
-			//this.phongBan = "";
 			this.kenhHoTro = "";
-			this.lineNoiBo = "";
 			this.maSoThue = "";
 			this.tenKhachHang = "";
 			this.email = "";
+			this.soDienThoai = "";
 			this.noiDungHT = "";
 			this.tenCongTy = "";
 		}
@@ -33,6 +29,7 @@ export class ContactModel {
 			let log : string = "";
 
 			// phong ban
+			//log += "// [Phòng ban]_[Kênh hỗ trợ]_[Line nội bộ]_[Mã số thuế/Mã đơn vị]_[yymmdd]";
 			log += "["+this.phongBan+"]";
 			log += "_["+this.kenhHoTro+"]";
 			log += "_["+this.lineNoiBo+"]";

@@ -8,17 +8,21 @@ import { ContactModel } from "app/_model/contact.model";
 })
 
 export class AppComponent {
+	sngayHT: Date = new Date();
 	contact: ContactModel = new ContactModel();
-	phongBan:string="HTKT";
 	kenhHoTros: Array<string> = ["Phone", "Team", "TV", "GH"];
 	resultLog : string = "";
   
-	constructor(){
-		//this.contact = new ContactModel();
+	constructor(@Inject('contactSrv') private contactSrv){
+		this.contact = new ContactModel();
+		this.contactSrv.getHeader();
+		//this.contactSrv.insertRow(this.contact);
+
 	}
   
 	sendContact(formValue):void {
 		//this.contact = new ContactModel();
+		this.contact.ngayHT = formValue.pbInfo.ngayHT;
 		this.contact.phongBan = formValue.pbInfo.phongBan;
 		this.contact.kenhHoTro = formValue.pbInfo.kenhHoTro;
 		this.contact.lineNoiBo = formValue.pbInfo.lineNoiBo;
@@ -36,6 +40,7 @@ export class AppComponent {
 	}
 
 	resetForm():void{
+		console.log("reset form");
 		this.contact.reset();
 	}
 }
