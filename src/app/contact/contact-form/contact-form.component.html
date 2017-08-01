@@ -1,0 +1,126 @@
+<form novalidate #contactForm="ngForm" (ngSubmit)="sendContact(contactForm)">
+    <div class="card clearfix-card">
+        <div class="card-header">Thông tin phòng</div>
+        <div class="card-block">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Phòng Ban: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap" [ngClass]="{'has-danger': phongBan.invalid}">
+                        <input type="text" class="form-control" 
+                            name="phongBan" 
+                            [(ngModel)]="contact.phongBan" 
+                            #phongBan
+                            required/>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Ngày hỗ trợ: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="ngayHT" [ngModel]="contact.ngayHT|date:'yyMmdd'" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Line nội bộ: 
+                        <span class="required">(*)</span>
+                </label>
+                    <div class="form-wrap">
+                        <input type="number" class="form-control" name="lineNoiBo" [(ngModel)]="contact.lineNoiBo" required/>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Kênh hỗ trợ: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <select class="form-control" name="kenhHoTro" [(ngModel)]="contact.kenhHoTro" required>
+                            <option *ngFor="let kenh of kenhs" [value]="kenh.value">{{kenh.value}}: {{kenh.text}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card clearfix-card">
+        <div class="card-header">Thông tin Công Ty</div>
+        <div class="card-block">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Mã số thuế / Mã đơn vị:  
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="maSoThue" [(ngModel)]="contact.maSoThue" required/>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">Tên công ty: </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="tenCongTy" [(ngModel)]="contact.tenCongTy" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">Tên khách hàng: </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="tenKhachHang" [(ngModel)]="contact.tenKhachHang" />
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        E-mail: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <input type="email" class="form-control" name="email" [(ngModel)]="contact.email" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">Số điện thoại liên hệ: </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="soDienThoai" [(ngModel)]="contact.soDienThoai" />
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-form-label">
+                        Nội dung cần hỗ trợ: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" name="noiDungHT" [(ngModel)]="contact.noiDungHT" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-form-label">Nội dung Copy: </label>
+                    <div class="form-wrap">
+                        <textarea class="form-control" name="resultLog" [(ngModel)]="resultLog" readonly style="height: 150px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-10">
+            <button class="btn btn-primary" type="submit">Gửi</button>
+            <button class="btn btn-primary" type="button" (click)="resetForm()">Nhập Lại</button>
+        </div>
+    </div>
+
+    <pre>{{contactForm.errors|json}}</pre>
+</form>
