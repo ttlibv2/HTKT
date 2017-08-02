@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Form } from "@angular/forms";
 import { Contact } from "app/contact/share/contact.model";
-import { KenhHoTro } from "app/contact/share/kenh-ho-tro.enum";
 
 @Component({
   selector: 'app-contact-form',
@@ -19,19 +18,21 @@ export class ContactFormComponent implements OnInit {
 
   public contact: Contact;
   public resultLog: string = "";
+  public sendStatus:boolean = false;
+  public urlSheet: string =  "";
 
 
-  constructor() { }
+  constructor(@Inject('contactSrv') private contactSrv) { }
 
   ngOnInit() {
     this.contact = new Contact();
+    this.urlSheet = this.contactSrv.urlSheet;
   }
 
   sendContact(form): void {
     console.log(form);
     
     let formValue = form.value;
-
     this.contact.ngayHT = formValue.ngayHT;
     this.contact.phongBan = formValue.phongBan;
     this.contact.kenhHoTro = formValue.kenhHoTro;
@@ -44,11 +45,11 @@ export class ContactFormComponent implements OnInit {
     this.contact.noiDungHT = formValue.noiDungHT;
 
     // result
-		this.resultLog = this.contact.result();
-		this.resetForm();
+    this.resultLog = this.contact.toString();
+    this.contactSrv.sendContact(this.contact);
   }
 
-  resetForm(): void {
+  resetForm(): void {    
     this.contact.reset();
   }
 

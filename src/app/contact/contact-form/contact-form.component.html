@@ -1,48 +1,44 @@
-<form novalidate #contactForm="ngForm" (ngSubmit)="sendContact(contactForm)">
+<form novalidate #contactForm="ngForm" (ngSubmit)="contactForm.valid && sendContact(contactForm)">
     <div class="card clearfix-card">
         <div class="card-header">Thông tin phòng</div>
         <div class="card-block">
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3 col-sm-6" [ngClass]="{ 'has-danger': phongBan?.errors?.required }">
                     <label class="col-form-label">
                         Phòng Ban: 
                         <span class="required">(*)</span>
                     </label>
-                    <div class="form-wrap" [ngClass]="{'has-danger': phongBan.invalid}">
-                        <input type="text" class="form-control" 
-                            name="phongBan" 
-                            [(ngModel)]="contact.phongBan" 
-                            #phongBan
-                            required/>
+                    <div class="form-wrap">
+                        <input type="text" class="form-control" [(ngModel)]="contact.phongBan" name="phongBan" required #phongBan="ngModel" />
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3 col-sm-6" [ngClass]="{ 'has-danger': ngayHT?.errors?.required }">
                     <label class="col-form-label">
                         Ngày hỗ trợ: 
                         <span class="required">(*)</span>
                     </label>
                     <div class="form-wrap">
-                        <input type="text" class="form-control" name="ngayHT" [ngModel]="contact.ngayHT|date:'yyMmdd'" required/>
+                        <input type="text" class="form-control" name="ngayHT" [ngModel]="contact.ngayHT|date:'yyMMdd'" required #ngayHT="ngModel"
+                        />
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3 col-sm-6" [ngClass]="{  'has-danger': lineNoiBo?.errors?.required  }">
                     <label class="col-form-label">
                         Line nội bộ: 
                         <span class="required">(*)</span>
                 </label>
                     <div class="form-wrap">
-                        <input type="number" class="form-control" name="lineNoiBo" [(ngModel)]="contact.lineNoiBo" required/>
+                        <input type="number" class="form-control" name="lineNoiBo" [(ngModel)]="contact.lineNoiBo" required #lineNoiBo="ngModel"
+                        />
                     </div>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3 col-sm-6" [ngClass]="{  'has-danger': kenhHoTro?.errors?.required }">
                     <label class="col-form-label">
                         Kênh hỗ trợ: 
                         <span class="required">(*)</span>
                     </label>
                     <div class="form-wrap">
-                        <select class="form-control" name="kenhHoTro" [(ngModel)]="contact.kenhHoTro" required>
+                        <select class="form-control" name="kenhHoTro" [(ngModel)]="contact.kenhHoTro" required #kenhHoTro="ngModel">
                             <option *ngFor="let kenh of kenhs" [value]="kenh.value">{{kenh.value}}: {{kenh.text}}</option>
                         </select>
                     </div>
@@ -55,61 +51,59 @@
         <div class="card-header">Thông tin Công Ty</div>
         <div class="card-block">
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">
-                        Mã số thuế / Mã đơn vị:  
-                        <span class="required">(*)</span>
-                    </label>
-                    <div class="form-wrap">
-                        <input type="text" class="form-control" name="maSoThue" [(ngModel)]="contact.maSoThue" required/>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group" [ngClass]="{ 'has-danger': maSoThue?.errors?.required  }">
+                        <label class="col-form-label">
+                            Mã số thuế / Mã đơn vị:  
+                            <span class="required">(*)</span>
+                        </label>
+                        <div class="form-wrap">
+                            <input type="text" class="form-control" name="maSoThue" [(ngModel)]="contact.maSoThue" required #maSoThue="ngModel" />
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-danger': noiDungHT?.errors?.required }">
+                        <label class="col-form-label">
+                            Nội dung cần hỗ trợ: 
+                            <span class="required">(*)</span>
+                        </label>
+                        <div class="form-wrap">
+                            <input type="text" class="form-control" name="noiDungHT" [(ngModel)]="contact.noiDungHT" required #noiDungHT="ngModel" />
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-danger': email?.errors?.required  }">
+                        <label class="col-form-label">
+                            E-mail: 
+                            <span class="required">(*)</span>
+                        </label>
+                        <div class="form-wrap">
+                            <input type="email" class="form-control" name="email" [(ngModel)]="contact.email" required #email="ngModel" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tên khách hàng: </label>
+                        <div class="form-wrap">
+                            <input type="text" class="form-control" name="tenKhachHang" [(ngModel)]="contact.tenKhachHang" />
+                        </div>
                     </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Tên công ty: </label>
-                    <div class="form-wrap">
-                        <input type="text" class="form-control" name="tenCongTy" [(ngModel)]="contact.tenCongTy" />
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label class="col-form-label">Tên công ty: </label>
+                        <div class="form-wrap">
+                            <input type="text" class="form-control" name="tenCongTy" [(ngModel)]="contact.tenCongTy" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Tên khách hàng: </label>
-                    <div class="form-wrap">
-                        <input type="text" class="form-control" name="tenKhachHang" [(ngModel)]="contact.tenKhachHang" />
+                    <div class="form-group">
+                        <label class="col-form-label">Số điện thoại liên hệ: </label>
+                        <div class="form-wrap">
+                            <input type="text" class="form-control" name="soDienThoai" [(ngModel)]="contact.soDienThoai" />
+                        </div>
                     </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">
-                        E-mail: 
-                        <span class="required">(*)</span>
-                    </label>
-                    <div class="form-wrap">
-                        <input type="email" class="form-control" name="email" [(ngModel)]="contact.email" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Số điện thoại liên hệ: </label>
-                    <div class="form-wrap">
-                        <input type="text" class="form-control" name="soDienThoai" [(ngModel)]="contact.soDienThoai" />
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">
-                        Nội dung cần hỗ trợ: 
-                        <span class="required">(*)</span>
-                    </label>
-                    <div class="form-wrap">
-                        <input type="text" class="form-control" name="noiDungHT" [(ngModel)]="contact.noiDungHT" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label class="col-form-label">Nội dung Copy: </label>
-                    <div class="form-wrap">
-                        <textarea class="form-control" name="resultLog" [(ngModel)]="resultLog" readonly style="height: 150px;"></textarea>
+                    <div class="form-group">
+                        <label class="col-form-label">Nội dung Copy: </label>
+                        <div class="form-wrap">
+                            <textarea class="form-control" name="resultLog" [(ngModel)]="resultLog" readonly style="height: 128px;"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,10 +111,9 @@
     </div>
     <div class="form-group row">
         <div class="col-md-10">
-            <button class="btn btn-primary" type="submit">Gửi</button>
+            <button class="btn btn-primary" type="submit" [disabled]="contactForm.invalid">Gửi</button>
             <button class="btn btn-primary" type="button" (click)="resetForm()">Nhập Lại</button>
+            <a href="{{urlSheet}}" target="_blank">Link Google Sheet</a>
         </div>
     </div>
-
-    <pre>{{contactForm.errors|json}}</pre>
 </form>

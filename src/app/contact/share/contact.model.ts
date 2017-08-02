@@ -27,7 +27,7 @@ export class Contact {
         this.tenCongTy = "";
     }
 
-    result(): string {
+    toString(): string {
         let log: string = "";
 
         // phong ban
