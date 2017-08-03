@@ -4,11 +4,11 @@ import { ContactDetailComponent } from "app/contact/contact-detail/contact-detai
 import { ContactListComponent } from "app/contact/contact-list/contact-list.component";
 
 const contactRoutes: Routes = [
-    {path: 'form', component: ContactFormComponent},
+    {path: 'add', component: ContactFormComponent},
     {path: 'list', component: ContactListComponent},
     {path: 'detail/:id', component: ContactDetailComponent},
     {path: 'edit/:id', component: ContactDetailComponent},
-    {path: '**', redirectTo: 'form'}
+    {path: '**', redirectTo: 'add'}
 ];
 
 export const ContactRouting = RouterModule.forChild(contactRoutes);
