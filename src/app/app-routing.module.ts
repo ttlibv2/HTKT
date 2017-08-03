@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AppComponent } from "app/app.component";
 
 const appRoutes: Routes = [
@@ -6,4 +6,4 @@ const appRoutes: Routes = [
     {path: '**', redirectTo: 'contact'}
 ];
 
-export const AppRouting = RouterModule.forRoot(appRoutes, {useHash:true});
+export const AppRouting = RouterModule.forRoot(appRoutes, {useHash:true, preloadingStrategy: PreloadAllModules});
