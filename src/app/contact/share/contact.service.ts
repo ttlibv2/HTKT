@@ -14,6 +14,7 @@ export class ContactService {
   sendContact(contact: Contact): boolean {
     this.response = null;
     let body = JSON.stringify(contact);
+    console.log("Thong Tin Gui: "+body);
     this.http.post(this.pathSendContact, body).subscribe(res => this.response = res);
     return true;
   }

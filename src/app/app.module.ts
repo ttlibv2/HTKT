@@ -1,23 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GridModule } from '@progress/kendo-angular-grid';
 import { AppComponent } from './app.component';
 import { AppRouting } from "app/app-routing.module";
-import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
-   
+
   ],
 
   imports: [
     BrowserModule,
-    AppRouting
-    
+    AppRouting,
+    BrowserAnimationsModule,
+    GridModule
+
   ],
 
-  providers:[
-    //{provide: LocationStrategy, useClass: HashLocationStrategy}
+  providers: [
   ],
 
   bootstrap: [AppComponent]

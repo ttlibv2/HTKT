@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Request, RequestOptions, Headers } from '@angular/http';
+import {JQuery} from 'jquery';
 import { ConfigGoogleForm } from "app/report/model/item-google-form.model";
 
 @Injectable()

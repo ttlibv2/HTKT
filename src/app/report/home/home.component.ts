@@ -7,16 +7,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor( @Inject('googleForm') private googleForm) { }
+  constructor() { }
 
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
 
   send(): void {
     console.log("==> send()");
-    this.googleForm.submitForm();
   }
 
 }

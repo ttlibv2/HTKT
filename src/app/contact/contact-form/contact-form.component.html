@@ -43,6 +43,39 @@
                         </select>
                     </div>
                 </div>
+                 <div class="form-group col-md-3 col-sm-6" [ngClass]="{  'has-danger': caLamViec?.errors?.required }">
+                    <label class="col-form-label">
+                        Ca làm việc: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <select class="form-control" name="caLamViec" [(ngModel)]="contact.caLamViec" required #caLamViec="ngModel">
+                            <option *ngFor="let caLamViec of caLVs" [value]="caLamViec">{{caLamViec}}</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="form-group col-md-3 col-sm-6" [ngClass]="{  'has-danger': linhVucHT?.errors?.required }">
+                    <label class="col-form-label">
+                        Lĩnh vực hỗ trợ: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <select class="form-control" name="linhVucHT" [(ngModel)]="contact.linhVucHT" required #linhVucHT="ngModel">
+                            <option *ngFor="let linhVucHT of linhVucHTs" [value]="linhVucHT">{{linhVucHT}}</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="form-group col-md-3 col-sm-6" [ngClass]="{  'has-danger': tinhTrangXL?.errors?.required }">
+                    <label class="col-form-label">
+                        Tình trạng: 
+                        <span class="required">(*)</span>
+                    </label>
+                    <div class="form-wrap">
+                        <select class="form-control" name="tinhTrangXL" [(ngModel)]="contact.tinhTrangXL" required #tinhTrangXL="ngModel">
+                            <option *ngFor="let tinhTrangXL of tinhTrangs" [value]="tinhTrangXL">{{tinhTrangXL}}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

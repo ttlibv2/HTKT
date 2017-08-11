@@ -3,12 +3,16 @@ export class Contact {
     public phongBan: string;
     public kenhHoTro: string;
     public lineNoiBo: string;
+    public caLamViec: string;
+    public linhVucHT: string;
+
     public maSoThue: string;
     public tenCongTy: string;
     public tenKhachHang: string;
     public email: string;
     public soDienThoai: string;
     public noiDungHT: string;
+    public tinhTrangXL: string;
 
     constructor() {
         this.ngayHT = new Date().toString();
@@ -25,6 +29,8 @@ export class Contact {
         this.soDienThoai = "";
         this.noiDungHT = "";
         this.tenCongTy = "";
+        this.tinhTrangXL = "";
+        this.linhVucHT = "";
     }
 
     toString(): string {
@@ -50,3 +56,35 @@ export class Contact {
         return log;
     }
 }
+
+export const caLamViecs: string[] = [
+    "Cả ngày",
+    "Ca sáng",
+    "Ca chiều",
+    "Ca Tối",
+    "Sáng Tối",
+    "Chiều Tối"
+];
+
+export const linhVucHTs: string[] = [
+    "iBHXH",
+    "TaxOnline và Pay24",
+    "iHQ",
+    "Chữ ký số",
+    "iThongKe",
+    "Hỗ trợ tận nơi",
+    "Khác"
+];
+
+export const tinhTrangXLs: string[] = [
+    "Đã xử lý",
+    "Chưa xử lý",
+    "Gửi phòng Tester"
+];
+
+export const kenhHoTros: any = [
+    { "value": "Phone", "text": "khách hàng yêu cầu hỗ trợ qua điện thoại." },
+    { "value": "Team", "text": "khách hàng yêu cầu hỗ trợ qua Teamviewer." },
+    { "value": "TV", "text": "khách hàng yêu cầu tư vấn/đăng ký mới dịch vụ." },
+    { "value": "GH", "text": "khách hàng yêu cầu gia hạn dịch vụ." },
+];

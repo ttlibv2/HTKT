@@ -7,8 +7,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { GoogleFormService } from "./services/google-form.service";
 import { HomeComponent } from './home/home.component';
 
-
-
 const routing: Routes = [
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
